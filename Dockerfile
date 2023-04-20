@@ -1,10 +1,10 @@
-FROM rust:1.68-alpine3.17 AS builder
+FROM rust:1.68-slim-bullseye AS builder
 
 WORKDIR /app
 COPY . .
 RUN cargo build --release
 
-FROM alpine:3.17.3
+FROM debian:bullseye-slim
 
 WORKDIR /app
 COPY --from=builder /app/target/release/postman-bot /app/main
