@@ -8,6 +8,8 @@ RUN cargo build --release
 
 FROM debian:bullseye-slim
 
+RUN apt update && apt install -y ca-certificates
+
 WORKDIR /app
 COPY --from=builder /app/target/release/postman-bot /app/main
 
