@@ -1,4 +1,4 @@
-# Tg-Marker
+# Postman-bot
 
 A simple bot for getting a telegram chat ID.
 
