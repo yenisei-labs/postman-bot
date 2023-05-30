@@ -1,5 +1,5 @@
-use teloxide::{prelude::*, utils::command::BotCommands, update_listeners::webhooks};
 use std::env;
+use teloxide::{prelude::*, update_listeners::webhooks, utils::command::BotCommands};
 
 #[tokio::main]
 async fn main() {
@@ -24,7 +24,7 @@ async fn main() {
                 .expect("Couldn't setup webhook");
 
             Command::repl_with_listener(bot, answer, listener).await;
-        },
+        }
         // Long pooling.
         Err(_) => {
             Command::repl(bot, answer).await;
@@ -33,7 +33,10 @@ async fn main() {
 }
 
 #[derive(BotCommands, Clone)]
-#[command(rename_rule = "lowercase", description = "I know the following commands:")]
+#[command(
+    rename_rule = "lowercase",
+    description = "I know the following commands:"
+)]
 enum Command {
     #[command(description = "show chat ID.")]
     ID,
@@ -45,11 +48,13 @@ enum Command {
 async fn answer(bot: Bot, msg: Message, cmd: Command) -> ResponseResult<()> {
     match cmd {
         Command::Help | Command::Start => {
-            bot.send_message(msg.chat.id, Command::descriptions().to_string()).await?
-        },
+            bot.send_message(msg.chat.id, Command::descriptions().to_string())
+                .await?
+        }
         Command::ID => {
-            bot.send_message(msg.chat.id, msg.chat.id.to_string()).await?
-        },
+            bot.send_message(msg.chat.id, msg.chat.id.to_string())
+                .await?
+        }
     };
 
     Ok(())
