@@ -52,8 +52,12 @@ async fn answer(bot: Bot, msg: Message, cmd: Command) -> ResponseResult<()> {
                 .await?
         }
         Command::ID => {
-            bot.send_message(msg.chat.id, msg.chat.id.to_string())
-                .await?
+            let res = match msg.thread_id {
+                Some(thread_id) => format!("Chat id: {}, thread id: {}", msg.chat.id, thread_id),
+                None => format!("Chat id: {}", msg.chat.id),
+            };
+
+            bot.send_message(msg.chat.id, res).await?
         }
     };
 
