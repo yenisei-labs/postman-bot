@@ -1,15 +1,18 @@
 [package]
 name = "postman-bot"
-version = "0.1.0"
+version = "0.0.4"
 edition = "2021"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+authors = ["Ivan Reshetnikov <ordinarydev@protonmail.com>"]
+description = "A simple bot for getting a telegram chat ID"
+readme = "readme.md"
+repository = "https://github.com/yenisei-labs/postman-bot"
+license = "MIT"
 
 [dependencies]
 teloxide = { version = "0.12.2", features = ["macros", "webhooks-axum"] }
-pretty_env_logger = "0.4.0"
-log = "0.4.17"
-tokio = { version =  "1.27", features = ["rt-multi-thread", "macros"] }
+pretty_env_logger = "0.5.0"
+log = "0.4.19"
+tokio = { version =  "1.29", features = ["rt-multi-thread", "macros"] }
 
 [profile.release]
 strip = "debuginfo"
